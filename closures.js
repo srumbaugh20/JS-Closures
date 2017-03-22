@@ -16,6 +16,8 @@ another variable called 'inner'. */
 
 // Code Here
 
+var inner = outer(name);
+
 //Once you do that, invoke inner.
 
 //Code Here
@@ -30,7 +32,7 @@ another variable called 'inner'. */
 
 
 /******************************************************************************\
-	#PROBLEM-02
+  #PROBLEM-02
 \******************************************************************************/
 
 
@@ -48,6 +50,9 @@ in your console. */
 
   //Code Here
 
+var number = '435-555-9248';
+
+var callJake = callFriend('Jake');
 
 
 
@@ -65,13 +70,20 @@ in your console. */
 properly. */
 
 //Code Here
+function makeCounter(){
+  var count = 0;
+   return function add(){
+      return count += 1;
+    }
+
+}
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+var count = makeCounter();
+count(); // 1
+count(); // 2
+count(); // 3
+count(); // 4
 
 
 
@@ -96,14 +108,23 @@ Information on the module pattern available here:
 http://stackoverflow.com/questions/17776940/javascript-module-pattern-with-example?answertab=votes#tab-top
 */
 
-function counterFactory(value) {
+var counterFactory = (function(value){
+      
 
-  // Code here.
+      return {
+        inc: function(){
+          value = value +1;
+          return value;
+        },
+        dec: function (){
+          value = value -1;
+          return value;
+        }
+      }
 
-
-  return {
-  }
+      return value;
 }
+  );
 
 
 counter = counterFactory(10);
@@ -133,11 +154,13 @@ function motivation(firstname, lastname) {
 
   var welcomeText = 'You\'re doing awesome, keep it up ';
 
-  // code message function here.
+  function message(){
+    return welcomeText + firstname +' ' + lastname + '.';
+  }
 
 
   //Uncommment this to return the value of your invoked message function
-  //return message();
+  return message();
 
 }
 
